@@ -18,24 +18,27 @@
   .essrow{display:flex;gap:6px;align-items:center;padding:5px 8px;border-radius:3px}
 
   /* currency inventory — PoE2 stash grid */
-  .stash{position:relative;padding:11px;border-radius:3px;
+  .stash{position:relative;padding:10px;border-radius:3px;
     background:radial-gradient(130% 90% at 50% -10%, #15110b, #090706 78%);
-    box-shadow:inset 0 0 0 1px #4a3a22,inset 0 0 22px rgba(0,0,0,.85)}
-  .stash::before,.stash::after{content:"";position:absolute;width:13px;height:13px;border:1px solid var(--brass-dim);pointer-events:none}
+    box-shadow:inset 0 0 0 1px var(--brass-dim),inset 0 0 22px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.7)}
+  .stash::before,.stash::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--brass-dim);pointer-events:none}
   .stash::before{top:4px;left:4px;border-right:0;border-bottom:0}
   .stash::after{bottom:4px;right:4px;border-left:0;border-top:0}
-  .invgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:0;box-shadow:inset 0 0 0 1px rgba(74,58,34,.35)}
+  .invgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:0;box-shadow:inset 0 0 0 1px rgba(74,58,34,.4)}
   .cell{position:relative;aspect-ratio:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;border:0;
-    background-color:rgba(0,0,0,.22);background-image:var(--quat);background-size:74% 74%;background-position:center;background-repeat:no-repeat;
-    box-shadow:inset 0 0 0 1px rgba(74,58,34,.32);transition:background-color .1s,box-shadow .1s}
-  .cell img{width:86%;height:86%;object-fit:contain;pointer-events:none;position:relative;z-index:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
-  .cell:hover{background-color:rgba(199,154,75,.12);box-shadow:inset 0 0 0 1px rgba(199,154,75,.55),inset 0 0 13px rgba(199,154,75,.18)}
+    background-color:rgba(0,0,0,.24);background-image:var(--quat);background-size:74% 74%;background-position:center;background-repeat:no-repeat;
+    box-shadow:inset 0 0 0 1px rgba(74,58,34,.3);transition:background-color .12s,box-shadow .12s,transform .12s}
+  .cell img{width:84%;height:84%;object-fit:contain;pointer-events:none;position:relative;z-index:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+  .cell:hover{background-color:rgba(199,154,75,.14);box-shadow:inset 0 0 0 1px var(--brass),inset 0 0 14px rgba(199,154,75,.2);z-index:2}
+  .cell:hover img{filter:drop-shadow(0 1px 3px rgba(0,0,0,.7)) brightness(1.08)}
+  .cell:active{transform:scale(.94)}
   .cell.dis{cursor:not-allowed}
-  .cell.dis img{opacity:.3;filter:grayscale(.55) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
-  .cell.dis:hover{background-color:rgba(0,0,0,.22);box-shadow:inset 0 0 0 1px rgba(74,58,34,.32)}
-  .cell.empty,.cell.empty:hover{cursor:default;background-color:rgba(0,0,0,.22);box-shadow:inset 0 0 0 1px rgba(74,58,34,.32)}
-  .cell.armed{box-shadow:inset 0 0 0 1px var(--desecrated),inset 0 0 15px rgba(63,174,106,.32)!important;background-color:rgba(63,174,106,.07)!important}
-  .cell.armed::after{content:"º6";position:absolute;right:2px;top:0;font-size:10px;color:var(--desecrated);text-shadow:0 1px 2px #000;z-index:3}
+  .cell.dis img{opacity:.28;filter:grayscale(.6) drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+  .cell.dis:hover{background-color:rgba(0,0,0,.24);box-shadow:inset 0 0 0 1px rgba(74,58,34,.3);transform:none}
+  .cell.dis:active{transform:none}
+  .cell.empty,.cell.empty:hover{cursor:default;background-color:rgba(0,0,0,.24);box-shadow:inset 0 0 0 1px rgba(74,58,34,.3);transform:none}
+  .cell.armed{box-shadow:inset 0 0 0 1px var(--desecrated),inset 0 0 15px rgba(63,174,106,.35)!important;background-color:rgba(63,174,106,.09)!important}
+  .cell.armed::after{content:"✦";position:absolute;right:2px;top:1px;font-size:9px;color:var(--desecrated);text-shadow:0 1px 2px #000;z-index:3}
   .cell .cost{position:absolute;right:2px;bottom:0;font-family:var(--mono);font-size:9px;color:#ece0c4;
     text-shadow:0 1px 2px #000,0 0 3px #000;line-height:1.1;z-index:2;pointer-events:none}
   .cell .tg{position:absolute;left:0;top:0;font-family:var(--ui);font-size:8px;font-weight:700;line-height:1.35;
@@ -43,10 +46,10 @@
   .cell .tg.g{background:rgba(16,30,46,.85);color:#82b8e6}.cell .tg.p{background:rgba(58,33,14,.85);color:#e7b46a}
 
   /* hovered-item tooltip (PoE2 style) */
-  .invtip{position:fixed;z-index:200;pointer-events:none;max-width:248px;opacity:0;transition:opacity .1s;
+  .invtip{position:fixed;z-index:200;pointer-events:none;max-width:248px;opacity:0;transition:opacity .12s;
     background:linear-gradient(180deg,#1b1712,#100d0a);border:1px solid var(--rule-bright);border-radius:4px;box-shadow:var(--shadow)}
   .invtip.show{opacity:1}
-  .invtip .tname{font-family:var(--display);font-size:13.5px;text-align:center;padding:8px 14px 6px;border-bottom:1px solid var(--rule);letter-spacing:.02em}
-  .invtip .tbody{padding:7px 14px 9px;font-family:var(--ui);font-size:11.5px;color:var(--ink-dim);line-height:1.5}
-  .invtip .tcost{margin-top:5px;font-family:var(--mono);font-size:10.5px;color:var(--brass)}
+  .invtip .tname{font-family:var(--display);font-size:13px;text-align:center;padding:7px 14px 5px;border-bottom:1px solid var(--rule);letter-spacing:.02em}
+  .invtip .tbody{padding:7px 14px 9px;font-family:var(--ui);font-size:11px;color:var(--ink-dim);line-height:1.5}
+  .invtip .tcost{margin-top:5px;font-family:var(--mono);font-size:10px;color:var(--brass)}
 

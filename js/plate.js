@@ -13,7 +13,7 @@ function render(){
   if((b.i&&b.i.length)||item.vaalImplicit||(item.impLines&&item.impLines.length)){ html+=`<div class="sep"></div>`;
     var _impl=(!window.__altRange && item.impLines && item.impLines.length) ? item.impLines : (b.i||[]);
     _impl.forEach(t=>html+=`<div class="implicit">${t}</div>`);
-    if(item.vaalImplicit)html+=`<div class="implicit" style="color:var(--corrupt)">${item.vaalImplicit}</div>`; }
+    if(item.vaalImplicit)html+=`<div class="implicit vaal">${item.vaalImplicit}</div>`; }
   html+=`<div class="sep"></div><div class="affixrails">
     <div class="rail"><h4>Prefixes ${item.prefixes.length}/${maxAff()}</h4>${rail('prefix')}</div>
     <div class="rail"><h4>Suffixes ${item.suffixes.length}/${maxAff()}</h4>${rail('suffix')}</div></div>`;
@@ -40,10 +40,10 @@ function rail(gen){
     if(!m){ out+=`<div class="slot empty"><div class="slotlabel">empty ${gen}</div></div>`; continue; }
     let cls='slot filled'; if(m.fractured)cls+=' frac'; if(m.crafted)cls+=' crafted'; if(m.desecrated)cls+=' desec';
     let meta='';
-    if(m.desecrated){ meta=`<span style="font-family:var(--ui);color:var(--desecrated)">Desecrated · ${m.lich}</span>`; }
+    if(m.desecrated){ meta=`<span class="desectag">Desecrated · ${m.lich}</span>`; }
     else { const tc=m.rank===1?'t1':m.rank===2?'t2':'tx'; meta=`<span class="tier ${tc}">T${m.rank}</span>`;
       meta+=(m.tg||[]).slice(0,3).map(t=>`<span class="mtag">${t}</span>`).join('');
-      if(m.crafted)meta=`<span style="font-family:var(--ui);font-size:9px;color:#7fa6e0">Crafted</span>`+meta; }
+      if(m.crafted)meta=`<span class="craftedtag">Crafted</span>`+meta; }
     out+=`<div class="${cls}"><div class="mtext">${m.desecrated?m.dtext:modText(m)}</div><div class="mmeta">${meta}</div></div>`;
   }
   return out;

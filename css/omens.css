@@ -1,8 +1,7 @@
-  /* omens */
+  /* omens — same stash-grid visual language as the currency shelf */
   .omentray{display:block}
-  .omen{font-family:var(--ui);font-size:10.5px;border:1px solid var(--rule-bright);border-radius:13px;padding:5px 10px;
-    cursor:pointer;color:var(--ink-dim);background:var(--panel);transition:.12s}
-  .omen:hover{color:var(--ink);border-color:var(--brass-dim)}
-  .omen.active{background:#1d2a16;border-color:var(--desecrated);color:#9fe0b4;box-shadow:0 0 10px rgba(63,174,106,.2)}
-  .omen.active::before{content:"✦ ";color:var(--desecrated)}
+  /* omen cells inherit .cell / .invgrid / .stash from shelf.css; armed = .cell.armed glow */
+  .cell.omen.armed{box-shadow:inset 0 0 0 1px var(--desecrated),inset 0 0 16px rgba(63,174,106,.4)!important;
+    background-color:rgba(63,174,106,.1)!important}
+  .cell.omen.armed img{filter:drop-shadow(0 1px 3px rgba(0,0,0,.7)) brightness(1.12)}
 
