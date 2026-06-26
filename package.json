@@ -19,7 +19,10 @@
     "files": [
       "main.js",
       "preload.js",
-      "poe2-crafting-simulator-1.html",
+      "index.html",
+      "css/**/*",
+      "js/**/*",
+      "feature.js",
       "forge-icon.png"
     ],
     "win": {

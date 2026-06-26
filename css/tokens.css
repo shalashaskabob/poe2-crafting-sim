@@ -1,0 +1,12 @@
+  :root{
+    --bg:#0c0a08;--bg2:#141019;--panel:#17130f;--panel2:#1d1813;
+    --ink:#e9e0cf;--ink-dim:#a99e88;--ink-faint:#6f6757;--rule:#332a20;--rule-bright:#54442e;
+    --brass:#c79a4b;--brass-dim:#8a6f3c;
+    --magic:#8888ff;--rare:#ffff77;--normal:#c8c8c8;--unique:#af6025;
+    --fractured:#9a7fd0;--desecrated:#3fae6a;--corrupt:#d04b3a;
+    --good:#7fc97f;--warn:#e3b341;--bad:#d05a4a;
+    --shadow:0 8px 30px rgba(0,0,0,.6);
+    --quat:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2044'%3E%3Cg%20fill='none'%20stroke='%232c2316'%20stroke-width='1.2'%3E%3Ccircle%20cx='22'%20cy='14.5'%20r='7.5'/%3E%3Ccircle%20cx='22'%20cy='29.5'%20r='7.5'/%3E%3Ccircle%20cx='14.5'%20cy='22'%20r='7.5'/%3E%3Ccircle%20cx='29.5'%20cy='22'%20r='7.5'/%3E%3C/g%3E%3C/svg%3E");
+    --display:"Cinzel",Georgia,serif;--body:"Spectral",Georgia,serif;
+    --ui:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  }

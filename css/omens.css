@@ -1,0 +1,8 @@
+  /* omens */
+  .omentray{display:block}
+  .omen{font-family:var(--ui);font-size:10.5px;border:1px solid var(--rule-bright);border-radius:13px;padding:5px 10px;
+    cursor:pointer;color:var(--ink-dim);background:var(--panel);transition:.12s}
+  .omen:hover{color:var(--ink);border-color:var(--brass-dim)}
+  .omen.active{background:#1d2a16;border-color:var(--desecrated);color:#9fe0b4;box-shadow:0 0 10px rgba(63,174,106,.2)}
+  .omen.active::before{content:"✦ ";color:var(--desecrated)}
+

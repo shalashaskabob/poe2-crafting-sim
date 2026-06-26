@@ -1,0 +1,20 @@
+  /* codex */
+  .guidegrid{display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start}
+  @media(max-width:880px){.guidegrid{grid-template-columns:1fr}}
+  .toc{position:sticky;top:80px;font-family:var(--ui);font-size:13px}
+  .toc a{display:block;color:var(--ink-dim);text-decoration:none;padding:6px 10px;border-left:2px solid var(--rule)}
+  .toc a:hover{color:var(--ink);border-color:var(--brass-dim)}
+  .lessonbody h3{font-size:21px;color:var(--brass);margin:30px 0 4px}
+  .lessonbody h4{font-family:var(--ui);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);margin:18px 0 6px}
+  .lessonbody p{margin:8px 0}
+  .lessonbody .callout{border-left:3px solid var(--brass-dim);background:#181208;padding:11px 15px;margin:13px 0;border-radius:0 3px 3px 0}
+  .lessonbody .callout.warn{border-color:var(--warn);background:#1d1408}
+  .lessonbody .callout.danger{border-color:var(--bad);background:#1d0f0c}
+  .lessonbody code{font-family:var(--mono);font-size:13px;background:#1d1813;padding:1px 6px;border-radius:3px;color:#e0c98a}
+  table.ref{width:100%;border-collapse:collapse;margin:13px 0;font-size:13px}
+  table.ref th,table.ref td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule)}
+  table.ref th{font-family:var(--ui);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-dim)}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:13px 0}
+  .steps li{counter-increment:s;position:relative;padding:9px 0 9px 44px;border-bottom:1px solid var(--rule)}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:50%;
+    border:1px solid var(--brass-dim);color:var(--brass);font-family:var(--display);display:flex;align-items:center;justify-content:center;font-size:13px}

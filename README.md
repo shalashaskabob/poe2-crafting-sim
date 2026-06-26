@@ -40,7 +40,7 @@ The app runs in the **system tray**; closing the window hides it back to the tra
 - **Coach** — next-step suggestions for the selected item.
 - **Goal planner** — pick target mods, see per-slam odds and a crafting path.
 
-It also still runs as a plain web page — open `poe2-crafting-simulator-1.html` in a browser
+It also still runs as a plain web page — open `index.html` in a browser
 (the in-app **+ Import item** button works there; the *global* hotkey only exists in the desktop app).
 
 ## Build a standalone .exe (optional)
@@ -53,8 +53,8 @@ npm run dist     # downloads electron-builder bits, outputs a portable .exe in d
 
 | File | Role |
 |---|---|
-| `poe2-crafting-simulator-1.html` | the whole app (self-contained: data + icons + UI logic inlined) |
-| `feature.js` | source for the import/inventory/coach/planner layer (inlined into the HTML) |
+| `index.html` | the app shell — links the modular css/ and js/ files |
+| `feature.js` | the import/inventory/coach/planner layer (loaded directly by index.html) |
 | `main.js` | Electron main process — window, global hotkeys, native clipboard |
 | `preload.js` | secure bridge that hands clipboard text to the page |
 | `package.json` | npm scripts + Electron config |

@@ -28,7 +28,7 @@ function createWindow() {
     }
   });
   win.setMenuBarVisibility(false);
-  win.loadFile(path.join(__dirname, 'poe2-crafting-simulator-1.html'));
+  win.loadFile(path.join(__dirname, 'index.html'));
   win.webContents.setWindowOpenHandler(({ url }) => { shell.openExternal(url); return { action: 'deny' }; });
   // the X button hides back to the tray instead of quitting
   win.on('close', (e) => { if (!isQuiting) { e.preventDefault(); win.hide(); } });
