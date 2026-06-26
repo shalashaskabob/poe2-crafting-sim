@@ -1,0 +1,14 @@
+# dependencies / build output
+node_modules/
+dist/
+
+# runtime logs
+forge.log
+*.log
+
+# OS cruft
+Thumbs.db
+.DS_Store
+
+# editor / tooling
+.claude/

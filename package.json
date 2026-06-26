@@ -1,0 +1,31 @@
+{
+  "name": "the-forge-poe2",
+  "version": "1.0.0",
+  "description": "The Forge — PoE2 crafting bench with real datamined weights, item import, coach/planner, and a global hotkey overlay.",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.theforge.poe2",
+    "productName": "The Forge",
+    "files": [
+      "main.js",
+      "preload.js",
+      "poe2-crafting-simulator-1.html",
+      "forge-icon.png"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}
