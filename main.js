@@ -10,8 +10,8 @@ let alwaysOnTop = true;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1320,
-    height: 880,
+    width: 900,
+    height: 760,
     minWidth: 360,
     minHeight: 560,
     title: 'The Forge — PoE2 Crafting Bench',
