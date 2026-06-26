@@ -9,6 +9,9 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
+  "dependencies": {
+    "electron-overlay-window": "^4.1.0"
+  },
   "devDependencies": {
     "electron": "^33.2.0",
     "electron-builder": "^25.1.8"
@@ -24,6 +27,9 @@
       "js/**/*",
       "feature.js",
       "forge-icon.png"
+    ],
+    "asarUnpack": [
+      "**/node_modules/electron-overlay-window/**/*"
     ],
     "win": {
       "target": [
