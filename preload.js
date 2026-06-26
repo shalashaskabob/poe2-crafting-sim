@@ -2,7 +2,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('cbNative', {
-  // main process pushes clipboard text here when the global Ctrl+D fires
+  // main process pushes clipboard text here when the global Ctrl+P capture fires
   onImport: (cb) => ipcRenderer.on('cb-import', (_event, text) => cb(text)),
   platform: process.platform
 });
