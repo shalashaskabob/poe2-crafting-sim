@@ -49,7 +49,7 @@ function renderOdds(){
   html+=`<div class="odds-head"><div class="q">If you add a mod now</div><div class="side"><b>${ctx.label}</b> — ${sideLabel}</div></div>`;
 
   // target selector
-  html+=`<div class="targetsel"><label style="font-family:var(--ui);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:4px">Track a target mod</label>
+  html+=`<div class="targetsel"><label class="tlbl">Track a target mod</label>
     <select id="targetSel"><option value="">— none —</option>`;
   const seen=new Set();
   [...groups].sort((a,b)=>tierLabel(a.m)>tierLabel(b.m)?1:-1).forEach(g=>{ if(seen.has(g.ty))return; seen.add(g.ty);
@@ -75,7 +75,7 @@ function renderOdds(){
       <span class="tr">${tierLabel(g.m)}</span></div>`;
   });
   html+=`</div>`;
-  html+=`<div class="odds-foot"><span>Σ weight ${Math.round(ctx.both?'—':total)||'—'}</span><span>real datamined weights</span></div>`;
+  html+=`<div class="odds-foot"><span class="seal">Σ weight ${Math.round(ctx.both?'—':total)||'—'}</span><span>real datamined weights</span></div>`;
   body.innerHTML=html;
   const ts=document.getElementById('targetSel'); if(ts) ts.onchange=()=>{ targetMod=ts.value||null; renderOdds(); };
 }
