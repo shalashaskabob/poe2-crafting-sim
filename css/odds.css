@@ -1,30 +1,64 @@
-  /* ODDS PANEL (the new core feature) */
-  .odds{background:linear-gradient(180deg,#16181f,#0f1116);border:1px solid #283344;border-radius:4px}
-  .odds .hd{border-color:#283344;color:#8fb0d8}
+  /* ODDS PANEL (the new core feature)
+     The odds panel keeps a cooler accent than the brass app to read as the
+     "analytical" surface. These few cool literals are intentional local
+     accents harmonized with the dark brass theme; everything else uses tokens. */
+  .odds{
+    /* local cool accents (justified: signature analytical panel) */
+    --odds-line:var(--rule);          /* internal rules harmonize w/ brass dark */
+    --odds-cool:#7fa6cc;              /* cool ink for headings */
+    --odds-bar-a:#37597f;            /* bar gradient start */
+    --odds-bar-b:#6aa4d8;           /* bar gradient end */
+    --odds-track:#1c2530;          /* bar track */
+    background:linear-gradient(180deg,var(--panel),var(--bg));
+    border:1px solid var(--rule);border-radius:4px;box-shadow:var(--shadow)}
+  .odds .hd{border-color:var(--rule);color:var(--odds-cool)}
   .odds .bd{padding:0}
-  .odds-empty{padding:16px 14px;font-family:var(--ui);font-size:12.5px;color:var(--ink-faint);line-height:1.5}
-  .odds-head{padding:10px 14px;border-bottom:1px solid #1c242f}
-  .odds-head .q{font-family:var(--ui);font-size:11px;letter-spacing:.06em;color:#8fb0d8;text-transform:uppercase}
-  .odds-head .side{font-family:var(--ui);font-size:12px;color:var(--ink-dim);margin-top:3px}
+  .odds-empty{padding:16px 14px;font-family:var(--ui);font-size:12.5px;color:var(--ink-faint);line-height:1.55}
+
+  .odds-head{padding:9px 13px;border-bottom:1px solid var(--rule)}
+  .odds-head .q{font-family:var(--ui);font-size:10px;letter-spacing:.1em;color:var(--odds-cool);text-transform:uppercase}
+  .odds-head .side{font-family:var(--ui);font-size:11.5px;color:var(--ink-dim);margin-top:2px;line-height:1.35}
   .odds-head .side b{color:var(--ink)}
-  .oddstarget{padding:10px 14px;background:#15201a;border-bottom:1px solid #1c2f22}
-  .oddstarget .tg{font-family:var(--ui);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--desecrated)}
-  .oddstarget .big{font-family:var(--display);font-size:26px;color:#9fe0b4;line-height:1}
-  .oddstarget .sub{font-family:var(--ui);font-size:11.5px;color:var(--ink-dim);margin-top:2px}
-  .oddslist{max-height:230px;overflow-y:auto}
-  .oddslist::-webkit-scrollbar{width:8px}.oddslist::-webkit-scrollbar-thumb{background:#2c3c50;border-radius:4px}
-  .oddrow{display:flex;align-items:center;gap:9px;padding:6px 14px;border-bottom:1px solid #161d27;font-size:12.5px}
-  .oddrow:hover{background:rgba(255,255,255,.015)}
-  .oddrow.istarget{background:#15201a}
-  .oddrow .bar{flex:none;width:46px;height:6px;border-radius:3px;background:#232c38;overflow:hidden;position:relative}
-  .oddrow .bar i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#3a6da0,#5fa0d8);border-radius:3px}
+
+  /* target tracker — the highlighted readout for a tracked mod */
+  .oddstarget{padding:11px 13px;border-bottom:1px solid var(--rule);position:relative;
+    background:linear-gradient(180deg,rgba(63,174,106,.10),rgba(63,174,106,.02))}
+  .oddstarget::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--desecrated)}
+  .oddstarget .tg{font-family:var(--ui);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--desecrated)}
+  .oddstarget .big{font-family:var(--mono);font-weight:600;font-size:27px;color:var(--good);line-height:1;margin:2px 0 1px;letter-spacing:-.01em}
+  .oddstarget .sub{font-family:var(--ui);font-size:11px;color:var(--ink-dim);margin-top:2px;line-height:1.35}
+
+  /* scrollable family list */
+  .oddslist{max-height:236px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--rule-bright) transparent;overscroll-behavior:contain}
+  .oddslist::-webkit-scrollbar{width:6px}
+  .oddslist::-webkit-scrollbar-track{background:transparent}
+  .oddslist::-webkit-scrollbar-thumb{background:var(--rule-bright);border-radius:3px}
+  .oddslist::-webkit-scrollbar-thumb:hover{background:var(--brass-dim)}
+
+  .oddrow{display:flex;align-items:center;gap:9px;padding:5px 13px;border-bottom:1px solid var(--rule);
+    font-size:12px;transition:background .1s ease}
+  .oddrow:last-child{border-bottom:0}
+  .oddrow:hover{background:rgba(255,255,255,.025)}
+  .oddrow.istarget{background:linear-gradient(90deg,rgba(63,174,106,.14),rgba(63,174,106,.03))}
+  .oddrow.istarget:hover{background:linear-gradient(90deg,rgba(63,174,106,.18),rgba(63,174,106,.05))}
+
+  .oddrow .bar{flex:none;width:44px;height:5px;border-radius:2px;background:var(--odds-track);overflow:hidden;position:relative}
+  .oddrow .bar i{position:absolute;left:0;top:0;bottom:0;min-width:2px;
+    background:linear-gradient(90deg,var(--odds-bar-a),var(--odds-bar-b));border-radius:2px}
   .oddrow.istarget .bar i{background:linear-gradient(90deg,#2f9e5e,#5fd08a)}
-  .oddrow .pc{font-family:var(--mono);font-size:11px;color:var(--ink);flex:none;width:46px;text-align:right}
-  .oddrow .nm{flex:1;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .oddrow.istarget .nm{color:#bfe8cd}
-  .oddrow .tr{font-family:var(--mono);font-size:9px;color:var(--ink-faint);flex:none}
-  .odds-foot{padding:8px 14px;border-top:1px solid #1c242f;font-family:var(--ui);font-size:10.5px;color:var(--ink-faint);display:flex;justify-content:space-between;gap:8px}
-  .targetsel{padding:8px 14px;border-bottom:1px solid #1c242f}
+
+  .oddrow .pc{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink);flex:none;width:50px;text-align:right;font-variant-numeric:tabular-nums}
+  .oddrow .nm{flex:1;min-width:0;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .oddrow.istarget .nm{color:var(--good)}
+  .oddrow .tr{font-family:var(--mono);font-size:9px;color:var(--ink-faint);flex:none;letter-spacing:.02em}
+  .oddrow.istarget .tr{color:var(--desecrated)}
+
+  .odds-foot{padding:7px 13px;border-top:1px solid var(--rule);font-family:var(--ui);font-size:10px;
+    letter-spacing:.02em;color:var(--ink-faint);display:flex;justify-content:space-between;gap:8px;align-items:center}
+  .odds-foot .seal{font-family:var(--mono);color:var(--brass-dim)}
+
+  .targetsel{padding:8px 13px;border-bottom:1px solid var(--rule)}
+  .targetsel .tlbl{font-family:var(--ui);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:4px}
   .targetsel select{font-size:12px;padding:6px 8px}
 
   /* teacher */
