@@ -29,7 +29,8 @@
   /* overlay-sized work area: dense, fits beside the game (~860×640, min ~640×520) */
   .forge{display:grid;grid-template-columns:300px 1fr;gap:var(--s5);align-items:stretch;
     height:560px;max-height:calc(100vh - 42px - 2*var(--s5));min-height:440px}
-  .pane{display:flex;flex-direction:column;gap:var(--s5);min-width:0}
+  .pane{display:flex;flex-direction:column;gap:var(--s5);min-width:0;min-height:0}
+  .pane-left{overflow-y:auto;overflow-x:hidden}
   .pane.grow,.card.grow{flex:1 1 auto;min-height:0}
 
   @media(max-width:760px){
