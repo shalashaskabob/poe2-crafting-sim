@@ -1,11 +1,29 @@
   :root{
-    --bg:#0c0a08;--bg2:#141019;--panel:#17130f;--panel2:#1d1813;
+    /* ---- surfaces ---- */
+    --bg:#0c0a08;--bg2:#141019;--panel:#17130f;--panel2:#1d1813;--panel3:#241d16;
+    /* ---- ink ---- */
     --ink:#e9e0cf;--ink-dim:#a99e88;--ink-faint:#6f6757;--rule:#332a20;--rule-bright:#54442e;
-    --brass:#c79a4b;--brass-dim:#8a6f3c;
+    /* ---- accents ---- */
+    --brass:#c79a4b;--brass-dim:#8a6f3c;--brass-bright:#e0b864;
     --magic:#8888ff;--rare:#ffff77;--normal:#c8c8c8;--unique:#af6025;
     --fractured:#9a7fd0;--desecrated:#3fae6a;--corrupt:#d04b3a;
     --good:#7fc97f;--warn:#e3b341;--bad:#d05a4a;
-    --shadow:0 8px 30px rgba(0,0,0,.6);
+
+    /* ---- spacing scale (tight / overlay-grade) ---- */
+    --s1:2px;--s2:4px;--s3:6px;--s4:8px;--s5:10px;--s6:13px;--s7:16px;--s8:20px;
+
+    /* ---- radii (3–4px) ---- */
+    --r1:3px;--r2:4px;--r-pill:2px;
+
+    /* ---- soft layered shadows ---- */
+    --shadow:0 1px 3px rgba(0,0,0,.75);
+    --shadow-soft:0 1px 2px rgba(0,0,0,.55);
+    --shadow-pop:0 4px 14px rgba(0,0,0,.6);
+    --inset-hair:inset 0 0 0 1px rgba(0,0,0,.25);
+
+    /* ---- motion ---- */
+    --t-fast:.12s ease;
+
     --quat:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2044'%3E%3Cg%20fill='none'%20stroke='%232c2316'%20stroke-width='1.2'%3E%3Ccircle%20cx='22'%20cy='14.5'%20r='7.5'/%3E%3Ccircle%20cx='22'%20cy='29.5'%20r='7.5'/%3E%3Ccircle%20cx='14.5'%20cy='22'%20r='7.5'/%3E%3Ccircle%20cx='29.5'%20cy='22'%20r='7.5'/%3E%3C/g%3E%3C/svg%3E");
     --display:"Cinzel",Georgia,serif;--body:"Spectral",Georgia,serif;
     --ui:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;

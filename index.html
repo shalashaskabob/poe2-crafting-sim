@@ -17,104 +17,118 @@
 <link rel="stylesheet" href="css/codex.css">
 </head>
 <body>
-<header class="top"><div class="wrap">
+<header class="top">
   <div class="sigil"><svg viewBox="0 0 40 40"><defs><radialGradient id="sg" cx="50%" cy="40%" r="60%">
     <stop offset="0%" stop-color="#f0c878"/><stop offset="60%" stop-color="#c79a4b"/><stop offset="100%" stop-color="#6a4f22"/></radialGradient></defs>
     <polygon points="20,3 35,12 35,28 20,37 5,28 5,12" fill="none" stroke="#54442e" stroke-width="1.4"/>
     <circle cx="20" cy="20" r="9" fill="url(#sg)"/><circle cx="20" cy="20" r="9" fill="none" stroke="#2a2014" stroke-width="1"/>
     <ellipse cx="17" cy="16" rx="3" ry="2" fill="rgba(255,255,255,.55)"/></svg></div>
-  <div><div class="brand"><b>The</b> Forge</div><div class="sub">PoE2 Crafting Bench · real weights</div></div>
+  <div class="brand"><b>The</b> Forge</div>
   <nav class="navlinks"><button class="on" data-go="craft">Workbench</button><button data-go="guide">Codex</button></nav>
-  <span class="patchtag" id="patchTag" title="Weights datamined from the game (build 4.5.3.1.4), with the known 0.5 deltas hand-patched. Crafting mechanics modelled on 0.5 Return of the Ancients.">0.4 weights · 0.5 patched</span>
-</div></header>
+  <span class="patchtag" id="patchTag" title="Weights datamined from the game (build 4.5.3.1.4), with the known 0.5 deltas hand-patched. Crafting mechanics modelled on 0.5 Return of the Ancients.">0.4 · 0.5 patched</span>
+</header>
 
 <div id="craft" class="page on">
-  <div class="hero"><div class="embers" id="embers"></div><div class="wrap">
+  <!-- slimmed marketing surfaces kept hidden so sibling JS still has its mount points -->
+  <div class="hero" hidden><div class="embers" id="embers"></div>
     <div class="eyebrow">Real datamined mod weights · live roll odds</div>
-    <h1>See the <span class="glow">exact odds</span><br>before every slam.</h1>
-    <p class="lede">A faithful Path of Exile 2 crafting sandbox running on the game's real modifier weights — every prefix and
-      suffix, its tier, item-level gate, and spawn weight pulled straight from the data files. Each orb shows the true
-      probability of every outcome, the way the game actually rolls.</p>
-    <div class="startbtns">
-      <button class="btn primary" onclick="document.getElementById('forge').scrollIntoView()">Open the bench ↓</button>
-      <button class="btn" data-go="guide">Read the Codex</button>
-      <span class="pill live" style="margin-left:4px">● <span id="modCountStat">…</span> real mods loaded</span>
-    </div>
-  </div></div>
+    <h1>See the <span class="glow">exact odds</span> before every slam.</h1>
+    <p class="lede">A faithful Path of Exile 2 crafting sandbox running on the game's real modifier weights.</p>
+    <span class="pill live">● <span id="modCountStat">…</span> real mods loaded</span>
+  </div>
+  <div id="recipes" hidden></div>
 
-  <section class="block"><div class="wrap">
-    <div class="eyebrow">Guided crafts</div>
-    <h2 class="title">Start from a known recipe</h2>
-    <p class="deck">Each loads a real base at the right item level and walks the canonical workflow. Watch the odds panel
-      update after every step — that's the real probability shift the game computes.</p>
-    <div class="quick" id="recipes"></div>
-  </div></section>
-
-  <section class="block" id="forge"><div class="wrap"><div class="forge">
-    <!-- LEFT -->
-    <div class="col">
-      <div class="card"><div class="hd">Choose a base <span class="pill" id="baseCount">…</span></div><div class="bd">
-        <div class="field"><label>Item class</label><select id="classSel"></select></div>
-        <div class="field"><label>Base type</label><select id="baseSel"></select></div>
-        <div class="row2">
-          <div class="field"><label>Item level</label><input type="number" id="ilvlIn" min="1" max="86" value="82"></div>
-          <div class="field"><label>&nbsp;</label><button class="btn sm" style="width:100%" id="newBase">New white base</button></div>
+  <main id="forge" class="forge">
+    <!-- LEFT PANE: item plate + base + bench -->
+    <section class="pane pane-left">
+      <div class="card">
+        <div class="hd">Base <span class="pill" id="baseCount">…</span></div>
+        <div class="bd">
+          <div class="field"><label>Item class</label><select id="classSel"></select></div>
+          <div class="field"><label>Base type</label><select id="baseSel"></select></div>
+          <div class="row2">
+            <div class="field"><label>Item level</label><input type="number" id="ilvlIn" min="1" max="86" value="82"></div>
+            <div class="field"><label>&nbsp;</label><button class="btn sm" style="width:100%" id="newBase">New white</button></div>
+          </div>
         </div>
-        <div style="font-family:var(--ui);font-size:11px;color:var(--ink-faint);line-height:1.5">
-          Item level gates which tiers can roll: <b style="color:var(--ink-dim)">82</b> unlocks all T1s but widens the pool;
-          <b style="color:var(--ink-dim)">75–80</b> thins it. The odds panel reflects your choice live.</div>
-      </div></div>
+      </div>
 
-      <div class="card" id="plateCard"><div class="hd">The item <span class="pill" id="modcount">0 / 6</span></div>
-        <div class="bd"><div id="plate" class="plate rarity-normal"><div class="frame"></div><div id="plateInner"></div></div></div></div>
+      <div class="card grow" id="plateCard">
+        <div class="hd">The item <span class="pill" id="modcount">0 / 6</span></div>
+        <div class="bd"><div id="plate" class="plate rarity-normal"><div class="frame"></div><div id="plateInner"></div></div></div>
+      </div>
 
-      <div class="card"><div class="hd">Bench tools</div><div class="bd" style="display:flex;flex-wrap:wrap;gap:8px">
-        <button class="btn sm" id="undoBtn">↶ Undo</button>
-        <button class="btn sm" id="resetBtn">Reset to white</button>
-      </div></div>
-    </div>
+      <div class="card">
+        <div class="hd">Bench</div>
+        <div class="bd benchtools">
+          <button class="btn sm" id="undoBtn">↶ Undo</button>
+          <button class="btn sm" id="resetBtn">Reset to white</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- CENTER: currency + omens -->
-    <div class="col">
-      <div class="card shelf"><div class="hd">Currency &amp; materials <span class="pill" id="rarityState">Normal</span></div>
-        <div class="bd" id="shelf"></div>
-        <div class="predict" id="predict">Hover an orb to preview what it does. The odds panel shows live probabilities.</div></div>
-      <div class="card"><div class="hd">Omens <span class="pill">arm, then craft</span></div><div class="bd">
-        <div style="font-family:var(--ui);font-size:11px;color:var(--ink-faint);margin-bottom:9px;line-height:1.5">
-          Click to arm an omen; it bends the next matching orb, then is consumed. Watch how it reshapes the odds.</div>
-        <div class="omentray" id="omentray"></div></div></div>
-    </div>
+    <!-- RIGHT PANE: tabbed work area -->
+    <section class="pane pane-right">
+      <div class="tabbar" role="tablist">
+        <button class="tab on" role="tab" data-tab="currency">Currency</button>
+        <button class="tab" role="tab" data-tab="omens">Omens</button>
+        <button class="tab" role="tab" data-tab="odds">Odds</button>
+        <button class="tab" role="tab" data-tab="coach">Coach</button>
+      </div>
 
-    <!-- RIGHT: ODDS + teacher -->
-    <div class="col">
-      <div class="card odds"><div class="hd">Roll odds <span class="pill live" id="oddsLiveTag">live</span></div>
-        <div class="bd" id="oddsBody"><div class="odds-empty">Make the item Magic or Rare, then hover or use an orb that adds a
-          modifier — this panel shows the exact chance of every eligible mod, computed from real weights.</div></div></div>
+      <div class="tabpanes">
+        <!-- CURRENCY -->
+        <div class="tabpane on" data-pane="currency">
+          <div class="card shelf grow">
+            <div class="hd">Currency &amp; materials <span class="pill" id="rarityState">Normal</span></div>
+            <div class="bd" id="shelf"></div>
+            <div class="predict" id="predict">Hover an orb to preview what it does. The Odds tab shows live probabilities.</div>
+          </div>
+        </div>
 
-      <div class="card teacher"><div class="hd">The bench explains <span class="pill" style="border-color:#283546;color:#7f93a8">why</span></div>
-        <div class="lessons" id="lessons"><div class="lesson"><div class="what">Pick a base and start crafting.</div>
-          <div class="why">Every action is annotated with the rule behind it, and the odds panel shows the live probabilities.</div></div></div>
-        <div class="ledger" id="ledger"><span>Spent: <b id="spent">0</b> ex-equiv</span><span id="dataVer"></span></div></div>
-    </div>
-  </div></div></section>
+        <!-- OMENS -->
+        <div class="tabpane" data-pane="omens">
+          <div class="card grow">
+            <div class="hd">Omens <span class="pill">arm, then craft</span></div>
+            <div class="bd">
+              <div class="hint">Click to arm an omen; it bends the next matching orb, then is consumed. Watch how it reshapes the odds.</div>
+              <div class="omentray" id="omentray"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ODDS -->
+        <div class="tabpane" data-pane="odds">
+          <div class="card odds grow">
+            <div class="hd">Roll odds <span class="pill live" id="oddsLiveTag">live</span></div>
+            <div class="bd" id="oddsBody"><div class="odds-empty">Make the item Magic or Rare, then hover or use an orb that adds a
+              modifier — this panel shows the exact chance of every eligible mod, computed from real weights.</div></div>
+          </div>
+        </div>
+
+        <!-- COACH -->
+        <div class="tabpane" data-pane="coach">
+          <div class="card teacher grow">
+            <div class="hd">The bench explains <span class="pill" style="border-color:#283546;color:#7f93a8">why</span></div>
+            <div class="lessons" id="lessons"><div class="lesson"><div class="what">Pick a base and start crafting.</div>
+              <div class="why">Every action is annotated with the rule behind it, and the Odds tab shows the live probabilities.</div></div></div>
+            <div class="ledger" id="ledger"><span>Spent: <b id="spent">0</b> ex-equiv</span><span id="dataVer"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <div id="guide" class="page">
-  <section class="block"><div class="wrap">
+  <section class="codexwrap">
     <div class="eyebrow">Reference · real weights, 0.5 mechanics</div>
     <h2 class="title">The Crafting Codex</h2>
     <p class="deck">How the odds work, and how to bend them. PoE2 crafting is a system of narrowing constraints: orbs roll
       random outcomes by weight, omens narrow the pool, fractures lock the bad outcomes out.</p>
     <div class="guidegrid"><nav class="toc" id="toc"></nav><div class="lessonbody" id="codex"></div></div>
-  </div></section>
+  </section>
 </div>
-
-<footer><div class="wrap">
-  Unofficial fan-made teaching tool. Modifier <b>weights, tiers, and item-level gates are datamined from the real game data</b>
-  (<a href="https://github.com/repoe-fork/poe2" target="_blank" rel="noopener">repoe-fork/poe2</a>, build 4.5.3.1.4) with the known
-  <b>0.5 "Return of the Ancients"</b> deltas hand-patched (skill caps, Int-armour ES recharge). Crafting mechanics follow 0.5.
-  Cross-check <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">PoE2DB</a> for a real craft. PoE2 © Grinding Gear Games.
-</div></footer>
 
 <div class="toast" id="toast"></div>
 <script src="js/data.js"></script>
@@ -127,5 +141,19 @@
 <script src="js/omens.js"></script>
 <script src="js/init.js"></script>
 <script src="feature.js"></script>
+<script>
+/* Tab switching for the right work-area. Runs last so all panels are mounted. */
+(function(){
+  var bar=document.querySelector('.tabbar');
+  if(!bar) return;
+  var tabs=[].slice.call(bar.querySelectorAll('.tab'));
+  var panes=[].slice.call(document.querySelectorAll('.tabpane'));
+  function show(name){
+    tabs.forEach(function(t){ t.classList.toggle('on', t.dataset.tab===name); });
+    panes.forEach(function(p){ p.classList.toggle('on', p.dataset.pane===name); });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.tab); }); });
+})();
+</script>
 </body>
 </html>
